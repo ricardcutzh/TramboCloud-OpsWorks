@@ -1,0 +1,7 @@
+<% if @sentinel_port > 0 %>
+port <%= @sentinel_port %>
+<% end %>
+sentinel monitor <%= @master_name %> 127.0.0.1 <%= @port %> 1
+sentinel down-after-milliseconds <%= @master_name %> 5000
+sentinel failover-timeout <%= @master_name %> 5000
+sentinel parallel-syncs <%= @master_name %> 1
