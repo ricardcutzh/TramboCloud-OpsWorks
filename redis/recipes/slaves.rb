@@ -1,3 +1,5 @@
+require "aws-sdk-opsworks"
+
 log 'nombre de host' do
     message node['hostname']
     level :info

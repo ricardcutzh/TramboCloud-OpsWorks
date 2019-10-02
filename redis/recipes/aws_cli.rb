@@ -6,3 +6,7 @@ execute "install awscli" do
     command "pip install awscli"
     action :run
 end
+
+gem_package 'aws-sdk' do 
+    action :install
+end
