@@ -8,10 +8,6 @@ log 'ip de host' do
     level :info
 end
 
-log 'Rol asociado' do
-    message node['roles']
-    level :info
-end
 
 apt_package "python-pip" do
     action :install
