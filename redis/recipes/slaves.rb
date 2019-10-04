@@ -11,7 +11,7 @@ log 'ip de host' do
 end
 
 # DYNAMO INTERACTION
-dynamodb = Aws::DynamoDB::Client.new()
+dynamodb = Aws::DynamoDB::Client.new(region: node["opsworks"]["instance"]["region"])
 
 # CHECKING IF THERE AR ITEMS IN THE TABLE
 params = {
