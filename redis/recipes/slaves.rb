@@ -26,7 +26,9 @@ begin
     # SI NO EXISTE UN REGISTRO ENTONCES LO INSERTA
     if result.item == nil
         item = {
-            "master" => 'master_node',
+            key: {
+                "master" => 'master_node'
+            },   
             "ip" => node['ipaddress'],
             "host"=> node['hostname']
         }
