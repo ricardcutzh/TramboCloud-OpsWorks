@@ -46,7 +46,7 @@ begin
             level :info
         end
         log 'slave2' do
-            message result.item.ip
+            message result.item['ip']
             level :info
         end
     end
