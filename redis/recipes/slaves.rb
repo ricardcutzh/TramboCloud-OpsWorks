@@ -40,14 +40,19 @@ begin
         end
     # SI YA EXISTE UN REGISTRO ENTONCES SOLO CONFIGURA SLAVES
     else
-        node.default[:redis][:slave] = "yes"
-        log 'slave' do
-            message 'Configurando slave a master: '
-            level :info
-        end
-        log 'slave2' do
-            message result.item['ip']
-            level :info
+        if result.item['ip'] != node['ipaddress']
+            node.default[:redis][:slave] = "yes"
+            node.default[:redis][:server][:addr] = result.item['ip']
+            log 'conf slave' do
+                message "configurar este nodo como esclavo"
+                level :info
+            end
+        else
+            node.default[:redis][:slave] = "no"
+            log 'conf no slave' do
+                message "Este es nodo maestro"
+                level :info
+            end
         end
     end
 end
