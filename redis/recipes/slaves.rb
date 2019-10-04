@@ -22,22 +22,11 @@ params = {
 }
 
 begin
-    result = dynamodb.get_item(params)
+    result = dynamodb.get_item({key:{"master"=>"master_node"}, table_name: "Chef_Ruby"})
     # SI NO EXISTE UN REGISTRO ENTONCES LO INSERTA
     if result.item == nil
-        item = {
-            key: {
-                "master" => 'master_node'
-            },   
-            "ip" => node['ipaddress'],
-            "host"=> node['hostname']
-        }
-        pars = {
-            table_name: 'Chef_Ruby',
-            item: item
-        }
         begin
-            dynamodb.put_item(params)
+            dynamodb.put_item({item: {"master" => "master_node", "ip"=>node['ipaddress'], "host"=>node['hostname']}, table_name: "Chef_Ruby"})
             log 'master' do
                 message 'Configurando master'
                 level :info
