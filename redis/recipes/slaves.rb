@@ -16,8 +16,8 @@ dynamodb = AWS::DynamoDB::Client.new(region: 'us-west-2a')
 # CHECKING IF THERE AR ITEMS IN THE TABLE
 params = {
     table_name: 'Chef_Ruby',
-    key => {
-        master: 'master_node'
+    key: {
+        "master" => "master_node"
     }
 }
 
@@ -26,9 +26,9 @@ begin
     # SI NO EXISTE UN REGISTRO ENTONCES LO INSERTA
     if result.item == nil
         item = {
-            master: 'master_node',
-            ip: node['ipaddress'],
-            host: node['hostname']
+            "master" => 'master_node',
+            "ip" => node['ipaddress'],
+            "host"=> node['hostname']
         }
         pars {
             table_name: 'Chef_Ruby',
