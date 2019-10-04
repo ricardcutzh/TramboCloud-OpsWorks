@@ -40,9 +40,9 @@ begin
                 message 'Configurando master'
                 level :info
             end
-        rescue
+        rescue StandardError => e
             log 'error' do
-                message 'Error al intentar insertar'
+                message e.message
                 level :info
             end
         end
