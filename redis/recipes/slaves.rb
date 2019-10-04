@@ -14,13 +14,6 @@ end
 dynamodb = Aws::DynamoDB::Client.new(region: 'us-west-2')
 
 # CHECKING IF THERE AR ITEMS IN THE TABLE
-params = {
-    table_name: 'Chef_Ruby',
-    key: {
-        "master" => "master_node"
-    }
-}
-
 begin
     result = dynamodb.get_item({key:{"master"=>"master_node"}, table_name: "Chef_Ruby"})
     # SI NO EXISTE UN REGISTRO ENTONCES LO INSERTA

@@ -8,9 +8,14 @@
 #
 
 # Configure slave node templates
-priority = 100
-#node.default[:redis][:slave] = "yes"
-node[:redis][:ports].each do |port|
+if node.default[:redis][:slave] == "yes"
+  log 'conf slave' do
+    message "Configurando esclavo...."
+    level :info
+  end
+  priority = 100
+  #node.default[:redis][:slave] = "yes"
+  node[:redis][:ports].each do |port|
   # Change parameters for more different instances of redis
   node.default[:redis][:pid_file]          = "/var/run/redis-#{port}.pid"
   node.default[:redis][:server][:port]     = port
