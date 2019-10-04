@@ -55,4 +55,5 @@ if node.default[:redis][:slave] == "yes"
 
   # Increase slave priority for every node
   priority = priority + 100
+  end
 end
