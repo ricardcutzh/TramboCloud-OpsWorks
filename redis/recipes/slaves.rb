@@ -27,6 +27,7 @@ begin
     if result.item == nil
         begin
             dynamodb.put_item({item: {"master" => "master_node", "ip"=>node['ipaddress'], "host"=>node['hostname']}, table_name: "Chef_Ruby"})
+            node.default[:redis][:slave] = "no"
             log 'master' do
                 message 'Configurando master'
                 level :info
@@ -39,8 +40,13 @@ begin
         end
     # SI YA EXISTE UN REGISTRO ENTONCES SOLO CONFIGURA SLAVES
     else
+        node.default[:redis][:slave] = "yes"
         log 'slave' do
-            message 'Configurando slave'
+            message 'Configurando slave a master: '
+            level :info
+        end
+        log 'slave2' do
+            message result.item.ip
             level :info
         end
     end

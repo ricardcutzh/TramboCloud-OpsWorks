@@ -9,7 +9,7 @@
 
 # Configure slave node templates
 priority = 100
-node.default[:redis][:slave] = "yes"
+#node.default[:redis][:slave] = "yes"
 node[:redis][:ports].each do |port|
   # Change parameters for more different instances of redis
   node.default[:redis][:pid_file]          = "/var/run/redis-#{port}.pid"
