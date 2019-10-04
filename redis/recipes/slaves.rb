@@ -30,7 +30,7 @@ begin
             "ip" => node['ipaddress'],
             "host"=> node['hostname']
         }
-        pars {
+        pars = {
             table_name: 'Chef_Ruby',
             item: item
         }
