@@ -25,6 +25,16 @@ begin
                 message 'Configurando master'
                 level :info
             end
+            # ACA DEBO CONFIGURAR AL MASTER
+            template "#{node[:redis][:conf_dir]}/redis.conf" do
+                source        "redis2.conf.erb"
+                owner         "root"
+                group         "root"
+                mode          "0644"
+            end
+            execute 'reiniciando servidor' do
+                command 'service redis-server restart'
+            end
         rescue StandardError => e
             log 'error' do
                 message e.message
@@ -40,11 +50,29 @@ begin
                 message "configurar este nodo como esclavo"
                 level :info
             end
+            #CONFIGURANDO AL ESCLAVO
+            template "#{node[:redis][:conf_dir]}/redis.conf" do
+                source        "redis_slave.conf.erb"
+                owner         "root"
+                group         "root"
+                mode          "0644"
+                variables     :ipmaster => result.item['ip']
+            end
         else
             node.default[:redis][:slave] = "no"
             log 'conf no slave' do
                 message "Este es nodo maestro"
                 level :info
+            end
+            # CONFIGURANDO AL MASTER
+            template "#{node[:redis][:conf_dir]}/redis.conf" do
+                source        "redis2.conf.erb"
+                owner         "root"
+                group         "root"
+                mode          "0644"
+            end
+            execute 'reiniciando servidor' do
+                command 'service redis-server restart'
             end
         end
     end
