@@ -8,15 +8,18 @@
 
 ### redis_savle.conf Template
 * This template is the one that will be used to configure a slave node. The template receives a parameter that describes the master node ip.
+
 ![Drag Racing](n1.PNG)
 
 ## Recipes
 ### default.rb
 * This recipe is in charge of installing redis on every EC2 that comes up inside the layer.
+
 ![Drag Racing](n2.PNG)
 
 ### aws_cli.rb
 * This recipe is in charge of installing the aws-cli in the EC2. This is because one of the recipes will use the aws-sdk to communicate with dynamodb
+
 ![Drag Racing](n3.PNG)
 
 ### slaves.rb
@@ -34,4 +37,5 @@
 
 ## DynamoDB Table
 * This dynamo table is only to help identify which node is the master node, and also store the ip address of the master node. the following picture shows the sctructure of the table:
+
 ![Drag Racing](n6.PNG)
