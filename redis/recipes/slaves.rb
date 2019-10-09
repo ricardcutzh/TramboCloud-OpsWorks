@@ -32,9 +32,9 @@ begin
                 group         "root"
                 mode          "0644"
             end
-            execute 'reiniciando servidor' do
-                command 'service redis-server restart'
-            end
+            #execute 'reiniciando servidor' do
+            #    command 'service redis-server restart'
+            #end
         rescue StandardError => e
             log 'error' do
                 message e.message
@@ -71,9 +71,9 @@ begin
                 group         "root"
                 mode          "0644"
             end
-            execute 'reiniciando servidor' do
-                command 'service redis-server restart'
-            end
+            #execute 'reiniciando servidor' do
+            #    command 'service redis-server restart'
+            #end
         end
     end
 end
