@@ -35,10 +35,6 @@ begin
             #execute 'reiniciando servidor' do
             #    command 'sudo service redis-server restart'
             #end
-            service 'redis-server' do
-                action :restart
-                timeout 120
-            end
         rescue StandardError => e
             log 'error' do
                 message e.message
@@ -82,10 +78,10 @@ begin
             #execute 'reiniciando servidor' do
             #    command 'sudo service redis-server restart'
             #end
-            service 'redis-server' do
-                action :restart
-                timeout 120
-            end
         end
     end
+    execute 'redis-server' do
+        command 'redis-server /etc/redis/redis.conf'
+        user 'root'
+    end 
 end
