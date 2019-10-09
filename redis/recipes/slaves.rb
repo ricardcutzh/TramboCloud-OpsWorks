@@ -35,6 +35,10 @@ begin
             #execute 'reiniciando servidor' do
             #    command 'sudo service redis-server restart'
             #end
+            service 'redis-server' do
+                action :restart
+                timeout 120
+            end
         rescue StandardError => e
             log 'error' do
                 message e.message
@@ -58,6 +62,10 @@ begin
                 mode          "0644"
                 variables     :ipmaster => result.item['ip']
             end
+            service 'redis-server' do
+                action :restart
+                timeout 120
+            end
         else
             node.default[:redis][:slave] = "no"
             log 'conf no slave' do
@@ -74,6 +82,10 @@ begin
             #execute 'reiniciando servidor' do
             #    command 'sudo service redis-server restart'
             #end
+            service 'redis-server' do
+                action :restart
+                timeout 120
+            end
         end
     end
 end
