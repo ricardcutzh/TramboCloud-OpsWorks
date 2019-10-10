@@ -26,12 +26,12 @@ begin
                 level :info
             end
             # ACA DEBO CONFIGURAR AL MASTER
-            template "#{node[:redis][:conf_dir]}/redis.conf" do
-                source        "redis2.conf.erb"
-                owner         "root"
-                group         "root"
-                mode          "0644"
-            end
+            #template "#{node[:redis][:conf_dir]}/redis.conf" do
+            #    source        "redis2.conf.erb"
+            #    owner         "root"
+            #    group         "root"
+            #    mode          "0644"
+            #end
             #execute 'reiniciando servidor' do
             #    command 'sudo service redis-server restart'
             #end
@@ -69,12 +69,12 @@ begin
                 level :info
             end
             # CONFIGURANDO AL MASTER
-            template "#{node[:redis][:conf_dir]}/redis.conf" do
-                source        "redis2.conf.erb"
-                owner         "root"
-                group         "root"
-                mode          "0644"
-            end
+            #template "#{node[:redis][:conf_dir]}/redis.conf" do
+            #    source        "redis2.conf.erb"
+            #    owner         "root"
+            #    group         "root"
+            #    mode          "0644"
+            #end
             #execute 'reiniciando servidor' do
             #    command 'sudo service redis-server restart'
             #end
