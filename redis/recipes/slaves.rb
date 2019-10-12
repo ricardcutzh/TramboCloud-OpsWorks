@@ -58,9 +58,13 @@ begin
                 mode          "0644"
                 variables     :ipmaster => result.item['ip']
             end
-            service 'redis-server' do
-                action :restart
-                timeout 120
+            execute 'redis-server' do
+                command 'redis-server /etc/redis/redis.conf'
+                user 'root'
+            end 
+            execute 'ahora si sale' do
+                command 'service redis-server restart'
+                user 'root'
             end
         else
             node.default[:redis][:slave] = "no"
@@ -80,8 +84,8 @@ begin
             #end
         end
     end
-    execute 'redis-server' do
-        command 'redis-server /etc/redis/redis.conf'
-        user 'root'
-    end 
+    #execute 'redis-server' do
+    #    command 'redis-server /etc/redis/redis.conf'
+    #    user 'root'
+    #end 
 end
